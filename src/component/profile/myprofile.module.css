@@ -102,3 +102,8 @@
 .asideIcon a {
   color: #fff;
 }
+
+
+.lastChild {
+  display: flex;
+}

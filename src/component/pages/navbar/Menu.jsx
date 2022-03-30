@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import Styles from "./navbar.module.css";
 import { AuthContext } from "../../../api/AuthContext";
 import { FaUser } from "react-icons/fa";
-import {signOut} from "firebase/auth";
-import {auth} from "../../../api/firebase";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../api/firebase";
 import { toast } from "react-toastify";
 const Menu = () => {
   let [toggle, setToggle] = useState(false);
@@ -15,14 +15,13 @@ const Menu = () => {
     e.stopPropagation();
     setToggle(!toggle);
   };
-  console.log(USER);
 
-  let LogOut=async ()=>{
+  let LogOut = async () => {
     await signOut(auth);
+    window.sessionStorage.removeItem("TOKEN");
     toast.success("successfully logout");
-    window.location.assign("login")
-
-  }
+    window.location.assign("/login");
+  };
 
   let AuthenticatedUser = () => {
     return (
@@ -39,9 +38,7 @@ const Menu = () => {
             {/* <span>{USER.displayName}</span> */}
             <span>profile</span>
           </NavLink>
-          <div
-            className={toggle === true ? "dropDown show" : "dropDown hide"}
-          >
+          <div className={toggle === true ? "dropDown show" : "dropDown hide"}>
             <ul>
               <li>
                 <NavLink to="/myprofile">
@@ -68,7 +65,7 @@ const Menu = () => {
         <li>
           <NavLink
             to={{ pathname: "login" }}
-            activeClassname="active"
+            activeclassname="active"
             className={Styles.navbarAnchor}
           >
             Login
@@ -77,7 +74,7 @@ const Menu = () => {
         <li>
           <NavLink
             to={{ pathname: "signup" }}
-            activeClassname="active"
+            activeclassname="active"
             className={Styles.navbarAnchor}
           >
             Signup
@@ -92,7 +89,7 @@ const Menu = () => {
         <li>
           <NavLink
             to={{ pathname: "/" }}
-            activeClassname="active"
+            activeclassname="active"
             className={Styles.navbarAnchor}
           >
             Home
